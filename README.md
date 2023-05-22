@@ -1,4 +1,4 @@
-# Python-Programming
+# Python-Programming-using-OOPS
 ## Dice Game Project
 ### General Requirements:
 - The game should have two players: a human player and a computer player. Both should
