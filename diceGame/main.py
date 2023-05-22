@@ -80,10 +80,10 @@ class DiceGame:
 
         if human_die_result > computer_die_result:
             self.update_counters(winner=human, looser=computer)
-            print('You won this round!')
+            print('You won this round!😃')
         elif human_die_result < computer_die_result:
             self.update_counters(winner=computer, looser=human)
-            print('Computer won this round!')
+            print('Computer won this round!😢')
         else:
             print('It was a tie!')
 
@@ -121,7 +121,7 @@ class DiceGame:
         looser.roll_lost()
 
     def show_counters_after_round(self):
-        print(f'Scores after the current round, You:{self._human_player.get_counter()} '
+        print(f'\nScores after the current round, You:{self._human_player.get_counter()} '
               f'v/s Computer:{self._computer_player.get_counter()}!')
 
     @staticmethod
@@ -129,7 +129,7 @@ class DiceGame:
         if winner.is_human: # == self._computer_player:
             print('\n=========================================================')
             print('G A M E     O V E R ')
-            print('Congratulations. You beat the computer!😃')
+            print('Congratulations. You beat the computer!🥳😁')
             print('=========================================================')
         else:
             print('\n=========================================================')
