@@ -6,7 +6,6 @@ class Die:
     def __init__(self):
         self._roll_value = None
 
-    @staticmethod
     def roll_dice(self):
         self._roll_value = random.randint(1, 6)
         return self._roll_value
@@ -36,7 +35,7 @@ class Player:
         return self._counter
 
     def roll(self):
-        self._die.roll_dice()
+        return self._die.roll_dice()
 
     def get_counter(self):
         return self._counter
@@ -55,38 +54,41 @@ class DiceGame:
         self._computer_player = computer_player
 
     def start_game(self):
-        print('Welcome to the Dice Game!! You can press escape key to exit the game.')
-        print('Let the game begin!!')
+        print('\n=====================================================================')
+        print('🎲 Welcome to the Dice Game!!')
+        print('🎲 Let the game begin!! 🎲')
+        print('=====================================================================')
         game_over = False
         while not game_over:
             game_over = self.start_round()
+
         winner = self.get_winner()
-        if winner == self._computer_player:
-            print('Computer was able to beat you!')
-        else:
-            print('You beat the computer!')
+        self.end_game(winner)
 
     def start_round(self):
-        key = input("Press any key to start the round and roll your dice. Enter 'exit' to end the game!")
-        if key.lower() == 'exit':
-            self.exit_game()
-        self._human_player.die.roll_dice(human_die)
+        # Welcome the User
+        self.print_round_welcome()
+
+        # Roll the dice
+        self._human_player.roll()
+        self._computer_player.roll()
         human_die_result = self._human_player.die.roll_value
-        print(f'You rolled {human_die_result}!')
-        self._computer_player.die.roll_dice(computer_die)
         computer_die_result = self._computer_player.die.roll_value
-        print(f'Computer rolled {computer_die_result}!')
+
+        # Show the roll results
+        self.show_dice(human_die_result, computer_die_result)
+
         if human_die_result > computer_die_result:
-            human.roll_won()
-            computer.roll_lost()
+            self.update_counters(winner=human, looser=computer)
             print('You won this round!')
         elif human_die_result < computer_die_result:
-            human.roll_lost()
-            computer.roll_won()
+            self.update_counters(winner=computer, looser=human)
             print('Computer won this round!')
         else:
             print('It was a tie!')
-        print(f'Scores after the current round, You:{human.get_counter()} v/s Computer:{computer.get_counter()}!')
+
+        # Show Counters
+        self.show_counters_after_round()
 
         return self.is_game_over()
 
@@ -102,7 +104,41 @@ class DiceGame:
         else:
             return self._human_player
 
-    def exit_game(self):
+    def print_round_welcome(self):
+        print('\n--------------------------New Round-----------------------------')
+        key = input("Press any key to start the round and roll your dice 🎲. Enter 'exit' to end the game!")
+        if key.lower() == 'exit':
+            self.exit_game()
+
+    @staticmethod
+    def show_dice(human_die_result, computer_die_result):
+        print(f'You rolled {human_die_result}!')
+        print(f'Computer rolled {computer_die_result}!')
+
+    @staticmethod
+    def update_counters(winner, looser):
+        winner.roll_won()
+        looser.roll_lost()
+
+    def show_counters_after_round(self):
+        print(f'Scores after the current round, You:{self._human_player.get_counter()} '
+              f'v/s Computer:{self._computer_player.get_counter()}!')
+
+    @staticmethod
+    def end_game(winner):
+        if winner.is_human: # == self._computer_player:
+            print('\n=========================================================')
+            print('G A M E     O V E R ')
+            print('Congratulations. You beat the computer!😃')
+            print('=========================================================')
+        else:
+            print('\n=========================================================')
+            print('G A M E     O V E R ')
+            print('Computer won the game. Sorry...☹️')
+            print('=========================================================')
+
+    @staticmethod
+    def exit_game():
         quit()
 
 
@@ -115,4 +151,3 @@ if __name__ == '__main__':
     computer = Player(False, computer_die)
     game = DiceGame(human, computer)
     game.start_game()
-
