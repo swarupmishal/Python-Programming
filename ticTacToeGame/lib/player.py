@@ -1,6 +1,7 @@
 import random
-from lib.move import Move
 import numpy as np
+import time
+from lib.move import Move
 
 
 class Player:
@@ -96,3 +97,39 @@ class Player:
                 return False
         if player_count == 3:
             return True
+
+    def conduct_player_action(self, board):
+        if self.is_human:
+            move = self.get_human_move(board)
+        else:
+            move = self.get_computer_move(board)
+        board.submit_move(self, move)
+        board.print_board()
+
+        game_status = self.is_game_over(board)
+        return game_status
+
+    def is_game_over(self, board):
+        game_over = self.check_if_player_won(board)
+        if not game_over:
+            game_tied = self.is_board_full(board)
+            if game_tied:
+                print("It's a draw. Game Tied!")
+                return True
+        if game_over:
+            if self.is_human:
+                print("Awesome. You won the game! 🎉")
+            else:
+                print("Computer Won!")
+            return True
+        time.sleep(1)
+        return False
+
+
+    @staticmethod
+    def is_board_full(board):
+        for row in board.game_board:
+            for col in row:
+                if col in range(1, 10):
+                    return False
+        return True
