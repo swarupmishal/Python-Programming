@@ -16,7 +16,7 @@ class Move:
         elif self._value in (4, 5, 6):
             return 1  # Second row
         else:
-            return 3  # Third row
+            return 2  # Third row
 
     def get_column(self):
         if self._value in (1, 4, 7):
@@ -24,4 +24,4 @@ class Move:
         elif self._value in (2, 5, 8):
             return 1  # Second column
         else:
-            return 3  # Third column
+            return 2  # Third column

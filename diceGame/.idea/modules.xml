@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../Data-engineering-using-Azure-Databricks-and-Spark/.idea/Data-engineering-using-Azure-Databricks-and-Spark.iml" filepath="$PROJECT_DIR$/../../Data-engineering-using-Azure-Databricks-and-Spark/.idea/Data-engineering-using-Azure-Databricks-and-Spark.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/diceGame.iml" filepath="$PROJECT_DIR$/.idea/diceGame.iml" />
     </modules>
   </component>
