@@ -1,11 +1,6 @@
 class Board:
 
-    # EMPTY_CELL = 0
-
     def __init__(self):
-        # self.game_board = [[0, 0, 0],
-        #                    [0, 0, 0],
-        #                    [0, 0, 0],]
         self.game_board = [[1, 2, 3],
                            [4, 5, 6],
                            [7, 8, 9],]
@@ -48,3 +43,6 @@ class Board:
         row = move.get_row()
         col = move.get_column()
         return row, col
+
+    def check_if_game_over(self):
+        pass

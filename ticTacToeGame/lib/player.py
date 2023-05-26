@@ -1,5 +1,6 @@
 import random
 from lib.move import Move
+import numpy as np
 
 
 class Player:
@@ -37,7 +38,6 @@ class Player:
                 break
             else:
                 print("Please enter an integer between 1 and 9.")
-        # TODO: Logic to not use already selected move
         return move
 
     def get_computer_move(self, board):
@@ -55,3 +55,44 @@ class Player:
                 if col in range(1, 10):
                     available_positions.append(col)
         return available_positions
+
+    def check_if_player_won(self, board):
+        player_won = False
+        board_arr = np.array(board.game_board)
+        transposed_board_arr = board_arr.transpose().tolist()
+        diagonal_elements = board_arr.diagonal().tolist()
+        anti_diagonal_elements = board_arr[::-1].diagonal().tolist()
+
+        # Checking win by each row
+        if not player_won:
+            for row in board.game_board:
+                player_won = self.check_list_full_with_player_markers(row)
+                if player_won:
+                    break
+
+        # Checking win by each column
+        if not player_won:
+            for og_col_as_row in transposed_board_arr:
+                player_won = self.check_list_full_with_player_markers(og_col_as_row)
+                if player_won:
+                    break
+
+        # Checking win by diagonal
+        if not player_won:
+            player_won = self.check_list_full_with_player_markers(diagonal_elements)
+
+        # Checking win by anti diagonal
+        if not player_won:
+            player_won = self.check_list_full_with_player_markers(anti_diagonal_elements)
+
+        return player_won
+
+    def check_list_full_with_player_markers(self, elements):
+        player_count = 0
+        for element in elements:
+            if element == self._marker:
+                player_count += 1
+            else:
+                return False
+        if player_count == 3:
+            return True
