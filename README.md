@@ -85,6 +85,16 @@ The user will enter an integer from 1 to 9 (inclusive) to select the position on
 
 ================================================================================<br>
 This is a general overview of the project requirements for the first four classes that we will implement.
+![img.png](img.png)
+- There are two players to play this game - Human v/s Computer
+- When the game starts, each player receives 26 cards.
+- Each player takes the top card from their deck.
+- The player who drew the cards with the highest value (suits are ignored), wins the round.
+- If the cards have same value, the war starts.
+- Both players take three cards from the top of their deck, and they place them facing down, so they will be hidden. They will also play one additional card facing up. And we will make comparison based on the cards that are facing up. The player with the card of highest value wins the round. And the winner takes all the cards that were drawn by both the players.![img_2.png](img_2.png) 
+- The winner puts the cards at the bottom of his or her deck.
+- If there's a tie, the process continues until one of the player wins the round.
+- If one of the player wins all the cards from the deck, the game stops and the player wins.
 
 **🔹 The Suit Class**
 - The instances of this class shall have two instance attributes: description and symbol.
