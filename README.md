@@ -80,7 +80,7 @@ The user will enter an integer from 1 to 9 (inclusive) to select the position on
 - If the board is full but none of the players has won the game, then there is a tie.
 - When the game is over, we will ask the user if he/she would like to continue playing. We will take user input and start a new round if the player chooses to continue the game.
 
-## War Card Game
+## War Card Game Project
 ### Requirements
 
 ================================================================================<br>
